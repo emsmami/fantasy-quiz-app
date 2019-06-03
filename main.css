@@ -1,107 +1,99 @@
 * {
-    box-sizing: border-box;
-  }
-  body {
-    background-image: url("https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?cs=srgb&dl=astrology-astronomy-background-image-956981.jpg&fm=jpg");
-    font-size: 24px;
-    color: white;
-    
-  
-    
-  }
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?cs=srgb&dl=astrology-astronomy-background-image-956981.jpg&fm=jpg");
+  font-size: 24px;
+  color: white;
+}
+
 /*baseline media sizing, mobile first */
-  section {
+section {
   background-color: rgba(9, 11, 29, 0.651);
   width: 90%;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
-  /*margin-bottom: 20px;*/
   margin-left: auto;
   margin-right: auto;
   text-align: left;
-  /*justify-content: space-evenly;*/
   padding: 10px;
-   
-  }
+}
 
-  header {
-    width: 50%;
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    margin-right: auto;
-    margin-left: auto;
-    /*justify-content: space-bewteen;*/
-    
-  }
+header {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 
-  header > img {
+header>img {
   max-width: 100px;
   max-height: 100px;
-  align-items: center;  
+  align-items: center;
   margin: 10px;
-  background: linear-gradient(90deg, rgba(22,34,37,1) 0%, rgba(221,220,226,1) 50%, rgba(22,34,37,1) 100%); 
+  background: linear-gradient(90deg, rgba(22, 34, 37, 1) 0%, rgba(221, 220, 226, 1) 50%, rgba(22, 34, 37, 1) 100%);
   height: auto;
   width: auto;
   flex-shrink: 1;
 }
 
- #quiz-title {
+#quiz-title {
   text-align: center;
   margin-right: auto;
   margin-left: auto;
 }
 
-  .offer-to-start-quiz{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-    
-  }
+.offer-to-start-quiz {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
 
-  .questions, .next-question{
-    display: block;
-    align-items: left;
-    
-    justify-content: left;
-    padding-bottom: 20px;
-    
-  }
+}
 
- .next-question, .verify, #verify, #next, #final {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; 
-  } 
+.questions,
+.next-question {
+  display: block;
+  align-items: left;
+  justify-content: left;
+  padding-bottom: 20px;
+}
+
+.next-question,
+.verify,
+#verify,
+#next,
+#final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
 
-  .progress {
-    width: 100%;
-    display: block;
-    text-align: center;
-    /*display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    background-color: rgba(37, 40, 73, 0.397);*/
-    padding: 5px;
-    margin: 5px;
-  } 
+.progress {
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+}
 
-  ul {
-    list-style: none;
-  }
+ul {
+  list-style: none;
+}
 
-  
+
 a:link {
   color: white;
   text-emphasis: bold;
 }
 
-a:visited{
+a:visited {
   color: greenyellow;
 }
 
@@ -109,30 +101,32 @@ a:hover {
   color: gold;
 }
 
-  .answers  {
-    background-color: #364570;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    padding-bottom:none;
-  }
+.answers {
+  background-color: #364570;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  padding-bottom: none;
+}
 
-  .snark {
-    text-decoration-line: overline underline;
-    text-decoration-color: rgb(19, 89, 110);
-    font-size: 30px; 
-  }
-  
-@media screen and (min-width: 500px){
+.snark {
+  text-decoration-line: overline underline;
+  text-decoration-color: rgb(19, 89, 110);
+  font-size: 30px;
+}
+
+@media screen and (min-width: 500px) {
+
   /*sizing tablets small laptops*/
-section, .questions {
-  width: 60%; 
-}
+  section, .questions {
+    width: 60%;
+  }
 }
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 800px) {
+
   /*sizing tablets and desktop*/
-section, .questions{
-  width: 33%; 
-}
+  section, .questions {
+    width: 33%;
+  }
 }

@@ -74,7 +74,7 @@ function handleStart() {
     event.preventDefault();
     console.log('`handleStartingQuiz` ran');
     //renderFirstQuestion();
-   renderQuestion(1); 
+    renderQuestion(1);
   });
 }
 
@@ -96,8 +96,8 @@ function generateQuestion(id) {
         <li><input type="radio" class="options" name="answerOption" id="answerOption4" value="Marvel"> Marvel</li>
         </ul>
       </section> `;
-      
-    };
+
+};
 
 function renderQuestion(id) {
   console.log('renderQuestion ran' + id);
@@ -142,7 +142,7 @@ function checkAnswer(id) {
     disable();
     renderProgress();
   });
-  
+
 }
 
 //run the GenerateAnswer and render it to the DOM, adding Next buttons or Final score button
@@ -155,11 +155,11 @@ function renderAnswer(thisGuess, theQuestion) {
   increaseByOne(theQuestion);
 };
 
-  
+
 //create the answer response, add to the RIGHT array if correct, and WRONG array if incorrect and next button
 function generateAnswer(thisGuess, theQuestion) {
   const theAnswer = theQuestion.answer;
-  console.log('`generateAnswer` ran this Guess is ' +thisGuess + 'theQuestion answer is '+ theAnswer);
+  console.log('`generateAnswer` ran this Guess is ' + thisGuess + 'theQuestion answer is ' + theAnswer);
 
   if (thisGuess === theQuestion.answer) {
     RIGHT.push(theQuestion.number);
@@ -176,21 +176,21 @@ function generateAnswer(thisGuess, theQuestion) {
 };
 
 //take the current question number and add one to it for the next question. 
-function increaseByOne(theQuestion){
+function increaseByOne(theQuestion) {
   const count = theQuestion.number;
-  console.log ('`increaseByOne` ran with the count at ' + count);
+  console.log('`increaseByOne` ran with the count at ' + count);
   appendButton(count);
-  if(count == 10){
+  if (count == 10) {
     finalFeedback();
   } else {
-  let nextId = (count + 1);
-  console.log('end of `increaseByOne` ran with the next Id as ' + nextId);
-  questionPrep(nextId);
+    let nextId = (count + 1);
+    console.log('end of `increaseByOne` ran with the next Id as ' + nextId);
+    questionPrep(nextId);
   };
 };
 
 //add the correct button on the DOM
-function appendButton(count){
+function appendButton(count) {
   if (count < 10) {
     $('.js-buttons').replaceWith(nextButton);
   } else {
@@ -257,40 +257,44 @@ function finalFeedback() {
     $('.progress').remove();
     const feedback = generateFeedback();
     $('.js-questions').replaceWith(feedback);
+    $('.progress').append(`<section class ="js-questions restart offer-to-start-quiz">
+     <p>Want to try again?</p>
+      <button type ="submit" id="js-start">Re-start Quest</button> 
+      </section>`);
   });
 };
 
 //Snarky feednack based on percentage
-function generateFeedback(){
+function generateFeedback() {
   console.log('`generateFeedback` ran')
   const currentCorrect = RIGHT.length;
   const currentWrong = WRONG.length;
-  const currentPercent = (currentCorrect/currentWrong)*100;
-  if(currentPercent <= 30){
+  const currentPercent = (currentCorrect / currentWrong) * 100;
+  if (currentPercent <= 30) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
     <p>For a final percentage of ${currentPercent}</p>
     <p class='snark'> Did you even try? </p></section>`;
-  } else if(currentPercent > 30 && currentPercent < 70){
+  } else if (currentPercent > 30 && currentPercent < 70) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
     <p>For a final percentage of ${currentPercent}</p>
     <p class='snark'> You are showing potential young padawan.</p>
      </section>`;
-  } else if(currentPercent >= 70 && currentPercent <100){
+  } else if (currentPercent >= 70 && currentPercent < 100) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
     <p>For a final percentage of ${currentPercent}</p>
     <p class='snark'> Nice Work Captain Nerd. </p>
     </section>`;
-  } else if(currentPercent = 100){
+  } else if (currentPercent = 100) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
     <p>For a final percentage of ${currentPercent}</p>
     <p class='snark'> Its official you have been entered into the Hall of Nerdom. </p>
     </section>`;
   } else {
-  return `<section class = "progress">
+    return `<section class = "progress">
   Your final score was ${currentCorrect} correct and ${currentWrong} wrong. `;
   };
 };
