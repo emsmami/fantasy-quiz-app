@@ -32,14 +32,13 @@ header {
 
 
 header>img {
-  max-width: 90px;
-  max-height: 90px;
+  max-width: 50px;
+  max-height: 50px;
   align-items: center;
-  margin: 10px;
+  margin: 5px;
   background: linear-gradient(90deg, rgba(22, 34, 37, 1) 0%, rgba(221, 220, 226, 1) 50%, rgba(22, 34, 37, 1) 100%);
   height: auto;
   width: auto;
-  flex-shrink: 2;
 }
 
 #quiz-title {
@@ -121,6 +120,12 @@ a:hover {
   /*sizing tablets small laptops*/
   section, .questions {
     width: 60%;
+  }
+
+  header > img{
+    max-width: 100px;
+    max-height: 100px;
+    margin: 10px;
   }
 }
 
