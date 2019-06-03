@@ -131,6 +131,11 @@ function checkAnswer(id) {
     console.log('guess after null ' + thisGuess);
     console.log('the Question variable prior to loading it ' + theQuestion);
     thisGuess = $("input[name='answerOption']:checked").val();
+    if(thisGuess == undefined){
+      alert('You must choose an answer to proceed');
+      disableVerify();
+      renderQuestion(id);
+    } else {
     //theQuestion =$.grep(QUESTIONS, function(item){ return item.number === id;});
     //theQuestion = QUESTIONS.find(item => item.number === id);
     //attempting to use a separate function to try to limit the redudant runs. 
@@ -141,6 +146,7 @@ function checkAnswer(id) {
     renderAnswer(thisGuess, theQuestion);
     disable();
     renderProgress();
+  }
   });
 
 }
@@ -161,12 +167,12 @@ function generateAnswer(thisGuess, theQuestion) {
   const theAnswer = theQuestion.answer;
   console.log('`generateAnswer` ran this Guess is ' + thisGuess + 'theQuestion answer is ' + theAnswer);
 
-  if (thisGuess === theQuestion.answer) {
+  if(thisGuess === theQuestion.answer) {
     RIGHT.push(theQuestion.number);
     console.log('RIGHT array currently consists of ' + RIGHT);
     return `<section class ="js-questions answers" id="answer">
       <span>You Are correct!</span>`;
-  } else if (thisGuess !== theQuestion.answer) {
+  } else if (thisGuess != theQuestion.answer) {
     WRONG.push(theQuestion.number);
     console.log('WRONG array currently consists of ' + WRONG);
     return `<section class ="js-questions answers" id="answer">
@@ -269,28 +275,28 @@ function generateFeedback() {
   console.log('`generateFeedback` ran')
   const currentCorrect = RIGHT.length;
   const currentWrong = WRONG.length;
-  const currentPercent = (currentCorrect / currentWrong) * 100;
+  const currentPercent = (((currentCorrect / currentWrong) * 100).toFixed(2));
   if (currentPercent <= 30) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent}</p>
+    <p>For a final percentage of ${currentPercent} %.</p>
     <p class='snark'> Did you even try? </p></section>`;
   } else if (currentPercent > 30 && currentPercent < 70) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent}</p>
+    <p>For a final percentage of ${currentPercent} %.</p>
     <p class='snark'> You are showing potential young padawan.</p>
      </section>`;
   } else if (currentPercent >= 70 && currentPercent < 100) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent}</p>
+    <p>For a final percentage of ${currentPercent} %.</p>
     <p class='snark'> Nice Work Captain Nerd. </p>
     </section>`;
   } else if (currentPercent = 100) {
     return `<section class = "progress">
     <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent}</p>
+    <p>For a final percentage of ${currentPercent} %.</p>
     <p class='snark'> Its official you have been entered into the Hall of Nerdom. </p>
     </section>`;
   } else {
@@ -311,12 +317,13 @@ function undisable() {
   document.getElementById("answerOption").disabled = false;
 }
 
-
+function disableVerify() {
+  document.getElementById("verify").disabled = true;
+}
 
 
 function handleQuiz() {
   handleStart();
-
 }
 
 $(handleQuiz());
