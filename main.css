@@ -112,7 +112,7 @@ a:hover {
 .snark {
   text-decoration-line: overline underline;
   text-decoration-color: rgb(19, 89, 110);
-  font-size: 30px;
+  font-size: 30em;
 }
 
 @media screen and (min-width: 500px) {
