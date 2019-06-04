@@ -121,7 +121,7 @@ function findByNumber(id) {
 };
 
 
-//function that checks the answer and shows button to select the next question then posts the status. 
+//function that checks the answer and verifies if an answer was selected. Then sends to the answer and progress render functions. 
 function checkAnswer(id) {
   $('#verify').click(event => {
     event.preventDefault();
@@ -200,6 +200,7 @@ function appendButton(count) {
   if (count < 10) {
     $('.js-buttons').replaceWith(nextButton);
   } else {
+    finalFeedback();
     $('.js-buttons').replaceWith(finalScore);
   };
 };
@@ -270,40 +271,51 @@ function finalFeedback() {
   });
 };
 
-//Snarky feednack based on percentage
-function generateFeedback() {
-  console.log('`generateFeedback` ran')
+//Create score pass to Feedback
+/*function generateScore() {
+  console.log('`generateScore` ran');
   const currentCorrect = RIGHT.length;
   const currentWrong = WRONG.length;
-  const currentPercent = (((currentCorrect / currentWrong) * 100).toFixed(2));
+  const currentPercent = ((currentCorrect / currentWrong) * 100).toFixed(2);
+  generateFeedback(currentCorrect, currentWrong, currentPercent);
+};*/
+
+
+//Snarky Feedback based on Score
+function generateFeedback() {
+  const currentCorrect = RIGHT.length;
+  const currentWrong = WRONG.length;
+  const currentPercent = ((currentCorrect / currentWrong) * 100).toFixed(2);
+  console.log('`generateFeedback` ran' + 'currentCorrect '+ currentCorrect + 'currentWrong'+ currentWrong + currentPercent);
   if (currentPercent <= 30) {
-    return `<section class = "progress">
-    <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent} %.</p>
-    <p class='snark'> Did you even try? </p></section>`;
+    return `<section class = "progress js-feedback">
+  <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
+  <p>For a final percentage of ${currentPercent} %.</p>
+  <p class='snark'> Did you even try? </p></section>`;
   } else if (currentPercent > 30 && currentPercent < 70) {
-    return `<section class = "progress">
-    <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent} %.</p>
-    <p class='snark'> You are showing potential young padawan.</p>
-     </section>`;
+    return `<section class = "progress js-feedback">
+  <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
+  <p>For a final percentage of ${currentPercent} %.</p>
+  <p class='snark'> You are showing potential young padawan.</p>
+   </section>`;
   } else if (currentPercent >= 70 && currentPercent < 100) {
-    return `<section class = "progress">
-    <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent} %.</p>
-    <p class='snark'> Nice Work Captain Nerd. </p>
-    </section>`;
-  } else if (currentPercent = 100) {
-    return `<section class = "progress">
-    <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
-    <p>For a final percentage of ${currentPercent} %.</p>
-    <p class='snark'> Its official you have been entered into the Hall of Nerdom. </p>
-    </section>`;
-  } else {
-    return `<section class = "progress">
-  Your final score was ${currentCorrect} correct and ${currentWrong} wrong. `;
+    return `<section class = "progress js-feedback">
+  <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
+  <p>For a final percentage of ${currentPercent} %.</p>
+  <p class='snark'> Nice Work Captain Nerd. </p>
+  </section>`;
+  } else if (currentPercent == Infinity) {
+    return `<section class = "progress js-feedback">
+  <p>Your final score was ${currentCorrect} correct and ${currentWrong} wrong.</p>
+  <p>For a final percentage of 100 %.</p>
+  <p class='snark'> Its official you have been entered into the Hall of Nerdom. </p>
+  </section>`;
+  /*} else {
+    return `<section class = "progress js-feedback">
+Your final score was ${currentCorrect} correct and ${currentWrong} wrong. `;*/
   };
 };
+
 
 //Don't let people change the answer after they are corrected. 
 function disable() {
