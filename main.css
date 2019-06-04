@@ -73,6 +73,7 @@ header>img {
   align-items: center;
   width: 100%;
   vertical-align: middle;
+  
 }
 
 
@@ -111,8 +112,6 @@ a:hover {
 }
 
 .snark {
-  text-decoration-line: overline underline;
-  text-decoration-color: rgb(19, 89, 110);
   font-size: 30px;
 }
 
